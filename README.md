@@ -7,5 +7,5 @@ Code of our experiments as well as all pseudo-labels will be available upon acce
 - The general process for training our clustering generated pseudo-label-based self-supervised speaker embedding networks: ![](/process_pseudo_label_based_speaker_embedding_training.png)
 
 - The pipeline of our proposed CAMSAT method depicting the data flow and the different losses employed for clustering: ![](/CAMSAT_diagram.png)
-  We constrain the predictions of the MLP neural network to remain unchanged under local perturbations and data augmentations while enforcing symmetry w.r.t. augmentations (red arrows). Information maximization refers 
+  We constrain the predictions of the MLP-based neural network to remain unchanged under local perturbations and data augmentations while enforcing symmetry w.r.t. augmentations (red arrows). Information maximization refers 
   to maximizing the information-theoretic dependency between data and their assignments (predictions).
