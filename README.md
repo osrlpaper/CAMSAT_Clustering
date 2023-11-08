@@ -65,6 +65,32 @@ because if a training sample is a noisy sample, it does not belong to the corres
 In AAMSoftmax, this noisy sample generates a large wrong loss value, which impairs the model training. This partially explains the underperformance of AAMSoftmax compared to other variants
 when using pseudo-labels for training.
 
+## Key findings and contributions of our work
+
+Our work presents several considerable contributions: 
+
+  &emsp; &emsp; (1) Our proposed CAMSAT is the first to leverage the regularization benefit of AUGMIX as a supervisory signal for unsupervised clustering by mixing augmentations at the predictions level %which, throughout our experiments, lead to better generalizability and robustness. 
+  
+  &emsp; &emsp; (2) Our paper constitutes the first large-scale comprehensive study of the application of various recent SOTA SSL objectives for clustering and their combination, where we show that multi-objective clustering provides a strong and beneficial regularization effect and often results in beneficial complementary information.
+  
+  &emsp; &emsp; (3) By employing IMSAT information maximization framework, our CAMSAT approach is rigorously grounded in information theory. Thus, it effortlessly avoids degenerate solutions that other clustering methods are susceptible to, and has more capability to produce calibrated predictions.
+  
+  &emsp; &emsp; (4) We present a comprehensive analysis of the correlation between clustering performance (pretraining) and downstream performance, which helps to shed the light on various aspects that govern SS training.
+  
+  &emsp; &emsp; (5) We demonstrate a great drawback of classical non-deep models: Their generated PLs performances are highly correlated with euclidean distances at the input level, instead of higher abstract concepts and structural features. Thus, they are much less capable to discover more complex clusters than their DNN-based counterparts.
+  
+  &emsp; &emsp; (6) We also show that contrastive objectives such as InfoNCE push for a higher number of clusters.
+  
+  &emsp; &emsp; (7) Our suggested approach provides the SOTA performance in terms of both speaker clustering and SSSV compared to all existing SS approaches for SV.
+  
+  &emsp; &emsp; (8) CAMSAT showed better robustness to the initial number of clusters and is better able to estimate the ground-truth number of clusters than all other systems.
+  
+  &emsp; &emsp; (9) We used a set of 10 clustering metrics to thoroughly compare the performances of our algorithms. We found that these metrics are highly correlated with the downstream SV performance.
+
+
+
+
+
 [1] Fathan, A.; Alam, J.; and Kang, W. 2022. On the impact of the quality of pseudo-labels on the self-supervised speaker verification task. NeurIPS ENLSP Workshop 2022.
 
 [2] W. H. Kang, J. Alam, and A. Fathan. l-mix: a latent-level instance mixup regularization for robust self-supervised speaker representation learning. IEEE Journal of Selected Topics in Signal Processing, 2022.
