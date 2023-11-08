@@ -53,7 +53,7 @@ and weight vectors to remove radial variations, based on which a cosine margin t
 one-class learning instead of multi-class classification and does not assume the same distribution for all classes/speakers. More recently, AdaFace loss has been proposed which emphasizes misclassified
 samples according to the quality of speaker embeddings (via feature norms).
 
-Table below summarizes our results using different predefined numbers of clusters and different clustering-based pseudo-labels.
+Table below summarizes our results in terms of EER downstream performance using different predefined numbers of clusters and different clustering-based pseudo-labels.
 
 ![](/maximum_margin_softmax_experiments.png)
 
