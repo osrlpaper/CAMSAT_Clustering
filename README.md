@@ -41,8 +41,45 @@ In the following 2 experiments, we try to analyze the effect of noise, both at t
 
 Similar to our experiments above dealing with input noise, here we study the effect of training clustering-based self-supervised-based speaker verification systems with very noisy pseudo-labels (below 50% ACC) compared to systems trained with more accurate pseudo-labels. Our experiments show that label noise leads to lower correlation of the clustering performance with the downstream SV performance (lower coefficients when pseudo-labels are less accurate) which highlights the importance of highly accurate clustering models and the importance of mitigating label noise. From the heatmap, we can also notice that in the case of highly noisy pseudo-labels, i-mix and l-mix performing mixup regularization exhibit higher correlation with the downstream performance, which indicates the effectiveness of these 2 regularization techniques to mitigate the problem of noise memorization and to induce better generalization of our SV systems. We find these results to be compatible with [1] where authors demonstrated a high effectiveness of mixup, at both input (i-mix) and latent space levels (l-mix), to mitigate the memorization effects of noisy pseudo-labels and prevent overfitting inaccurate pseudo-labels.
 
+## Study of various maximum margin-based softmax loss objectives
+In order to improve performance on previously unseen data and to generalize to out-of-domain speech samples, in this section we study various maximum margin-based softmax variants based on different
+objectives. Indeed, softmax suffers from several drawbacks such as that (1) its computation of inter-class margin is intractable [18] and (2) the learned projections are not guaranteed equi-spaced. Indeed,
+the projection vectors for majority classes occupy more angular space compared to minority classes [39]. To solve these problems, several alternatives to softmax have been proposed [14 , 57 , 64 , 35, 58].
+For instance, AM Softmax loss applies an additive margin constraint in the angular space to the softmax loss for maximizing inter-class variance and minimizing intra-class variance. To provide a
+clear geometric interpretation of data samples and enhance the discriminative power of deep models, AAMSoftmax (angular additive margin softmax) objective (aka ArcFace) introduces an additive
+angular margin to the target angle (between the given features and the target center). Due to the exact correspondence between the angle and arc in the normalized hypersphere, AAMSoftmax can directly
+optimize the geodesic distance margin, thus its other name ArcFace. Additionally, CosFace (large margin cosine loss) reformulates the softmax loss as a cosine loss by L2 normalizing both features
+and weight vectors to remove radial variations, based on which a cosine margin term is introduced to further maximize the decision margin in the angular space. On the other hand, OCSoftmax uses
+one-class learning instead of multi-class classification and does not assume the same distribution for all classes/speakers. More recently, AdaFace loss has been proposed which emphasizes misclassified
+samples according to the quality of speaker embeddings (via feature norms).
+
+Table below summarizes our results using different predefined numbers of clusters and different clustering-based pseudo-labels.
+
+![](/maximum_margin_softmax_experiments.png)
+
+Our experimental results show clearly that our adopted softmax variants are very effective in improving the generalization of our speaker verification systems. In particular, unlike the widely used
+AAMSoftmax loss in speaker verification, to our knowledge, our results indicate for the first time that variants such as OCSoftmax (does not assume the same distribution for all speakers which is more
+realistic in our case) or the recent AdaFace loss, perform consistently better across all pseudo-labels and the ground truth labels. Indeed, AAMSoftmax is susceptible to massive label noise [14]. This is
+because if a training sample is a noisy sample, it does not belong to the corresponding positive class.
+In AAMSoftmax, this noisy sample generates a large wrong loss value, which impairs the model training. This partially explains the underperformance of AAMSoftmax compared to other variants
+when using pseudo-labels for training.
+
 [1] Fathan, A.; Alam, J.; and Kang, W. 2022. On the impact of the quality of pseudo-labels on the self-supervised speaker verification task. NeurIPS ENLSP Workshop 2022.
 
 [2] W. H. Kang, J. Alam, and A. Fathan. l-mix: a latent-level instance mixup regularization for robust self-supervised speaker representation learning. IEEE Journal of Selected Topics in Signal Processing, 2022.
 
 [3] K. Lee, Y. Zhu, K. Sohn, C.-L. Li, J. Shin, and H. Lee. i-mix: A domain-agnostic strategy for contrastive representation learning. In ICLR, 2021.
+
+[14] Deng et al. Arcface: Additive angular margin loss for deep face recognition. IEEE Transactions on PAMI, 2021. doi: 10.1109/TPAMI.2021.3087709.
+
+[18] G. F. Elsayed et al. Large margin deep networks for classification, 2018.
+
+[35] M. Kim, A. K. Jain, and X. Liu. Adaface: Quality adaptive margin for face recognition. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages 18750–18759, 2022.
+
+[39] W. Liu, Y. Wen, et al. Large-margin softmax loss for convolutional neural networks. In ICML, volume 2, 2016.
+
+[57] F. Wang et al. Additive margin softmax for face verification. IEEE Signal Processing Letters, 25(7):926–930, 2018.
+
+[58] H. Wang, Y. Wang, Z. Zhou, X. Ji, D. Gong, J. Zhou, Z. Li, and W. Liu. Cosface: Large margin cosine loss for deep face recognition. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 5265–5274, 2018.
+
+[64] Y. Zhang et al. One-class learning towards synthetic voice spoofing detection. IEEE Signal Processing Letters, 2021.
