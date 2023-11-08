@@ -69,23 +69,23 @@ when using pseudo-labels for training.
 
 Our work presents several considerable contributions: 
 
-  &emsp; &emsp; (1) Our proposed CAMSAT is the first to leverage the regularization benefit of AUGMIX as a supervisory signal for unsupervised clustering by mixing augmentations at the predictions level %which, throughout our experiments, lead to better generalizability and robustness. 
+  &emsp; &emsp; &emsp; (1) Our proposed CAMSAT is the first to leverage the regularization benefit of AUGMIX as a supervisory signal for unsupervised clustering by mixing augmentations at the predictions level %which, throughout our experiments, lead to better generalizability and robustness. 
   
-  &emsp; &emsp; (2) Our paper constitutes the first large-scale comprehensive study of the application of various recent SOTA SSL objectives for clustering and their combination, where we show that multi-objective clustering provides a strong and beneficial regularization effect and often results in beneficial complementary information.
+  &emsp; &emsp; &emsp; (2) Our paper constitutes the first large-scale comprehensive study of the application of various recent SOTA SSL objectives for clustering and their combination, where we show that multi-objective clustering provides a strong and beneficial regularization effect and often results in beneficial complementary information.
   
-  &emsp; &emsp; (3) By employing IMSAT information maximization framework, our CAMSAT approach is rigorously grounded in information theory. Thus, it effortlessly avoids degenerate solutions that other clustering methods are susceptible to, and has more capability to produce calibrated predictions.
+  &emsp; &emsp; &emsp; (3) By employing IMSAT information maximization framework, our CAMSAT approach is rigorously grounded in information theory. Thus, it effortlessly avoids degenerate solutions that other clustering methods are susceptible to, and has more capability to produce calibrated predictions.
   
-  &emsp; &emsp; (4) We present a comprehensive analysis of the correlation between clustering performance (pretraining) and downstream performance, which helps to shed the light on various aspects that govern SS training.
+  &emsp; &emsp; &emsp; (4) We present a comprehensive analysis of the correlation between clustering performance (pretraining) and downstream performance, which helps to shed the light on various aspects that govern Self-Supervised training.
   
-  &emsp; &emsp; (5) We demonstrate a great drawback of classical non-deep models: Their generated PLs performances are highly correlated with euclidean distances at the input level, instead of higher abstract concepts and structural features. Thus, they are much less capable to discover more complex clusters than their DNN-based counterparts.
+  &emsp; &emsp; &emsp; (5) We demonstrate a great drawback of classical non-deep models: Their generated pseudo-labels performances are highly correlated with euclidean distances at the input level, instead of higher abstract concepts and structural features. Thus, they are much less capable to discover more complex clusters than their DNN-based counterparts.
   
-  &emsp; &emsp; (6) We also show that contrastive objectives such as InfoNCE push for a higher number of clusters.
+  &emsp; &emsp; &emsp; (6) We also show that contrastive objectives such as InfoNCE push for a higher number of clusters.
   
-  &emsp; &emsp; (7) Our suggested approach provides the SOTA performance in terms of both speaker clustering and SSSV compared to all existing SS approaches for SV.
+  &emsp; &emsp; &emsp; (7) Our suggested approach provides the SOTA performance in terms of both speaker clustering and Self-Supervised speaker verification compared to all existing Self-Supervised approaches for SV.
   
-  &emsp; &emsp; (8) CAMSAT showed better robustness to the initial number of clusters and is better able to estimate the ground-truth number of clusters than all other systems.
+  &emsp; &emsp; &emsp; (8) CAMSAT showed better robustness to the initial number of clusters and is better able to estimate the ground-truth number of clusters than all other systems.
   
-  &emsp; &emsp; (9) We used a set of 10 clustering metrics to thoroughly compare the performances of our algorithms. We found that these metrics are highly correlated with the downstream SV performance.
+  &emsp; &emsp; &emsp; (9) We used a set of 10 clustering metrics to thoroughly compare the performances of our algorithms. We found that these metrics are highly correlated with the downstream speaker verification performance.
 
 
 
