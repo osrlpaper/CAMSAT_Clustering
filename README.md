@@ -4,6 +4,8 @@ This repository is for our paper entitled "CAMSAT: Augmentation Mix and Self-Aug
 
 Code of our experiments as well as all pseudo-labels and trained models will be available upon acceptance of our paper. 
 
+## Our general framework and CAMSAT
+
 - The general process for training our clustering generated pseudo-label-based self-supervised speaker embedding networks: ![](/process_pseudo_label_based_speaker_embedding_training.png)
 
 - The pipeline of our proposed CAMSAT clustering method depicting the data flow and the different losses employed for clustering: ![](/CAMSAT_diagram.png)
